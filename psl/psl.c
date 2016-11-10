@@ -108,7 +108,7 @@ static int luapsl_free(lua_State *L) {
 static int luapsl_is_public_suffix(lua_State *L) {
 	const psl_ctx_t *psl = luapsl_checkpslctxnotnull(L, 1);
 	const char *domain = luaL_checkstring(L, 2);
-#if PSL_VERSION_NUMBER >= 0x000c00
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x000c00
 	int type = luaL_optinteger(L, 3, PSL_TYPE_ANY);
 	lua_pushboolean(L, psl_is_public_suffix2(psl, domain, type));
 #else
@@ -197,7 +197,7 @@ static int luapsl_get_version(lua_State *L) {
 	return 1;
 }
 
-#if PSL_VERSION_NUMBER >= 0x000b00
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x000b00
 /* Returns the library version number if the given version number is at least
 the version of the library, else return 0; If the argument is 0, the function
 returns the library version number without performing a check. */
@@ -260,7 +260,7 @@ int luaopen_psl(lua_State *L) {
 		{"builtin_outdated", luapsl_builtin_outdated},
 #endif
 		{"get_version", luapsl_get_version},
-#if PSL_VERSION_NUMBER >= 0x000b00
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x000b00
 		{"check_version_number", luapsl_check_version_number},
 #endif
 		{"str_to_utf8lower", luapsl_str_to_utf8lower},
@@ -306,7 +306,7 @@ int luaopen_psl(lua_State *L) {
 	lua_setfield(L, -2, "VERSION_PATCH");
 #endif
 
-#if PSL_VERSION_NUMBER >= 0x000c00
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x000c00
 	/* constants for psl_is_public_suffix2 */
 	lua_createtable(L, 0, 3);
 	lua_pushinteger(L, PSL_TYPE_PRIVATE);
