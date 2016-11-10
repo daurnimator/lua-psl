@@ -244,8 +244,19 @@ int luaopen_psl(lua_State *L) {
 
 	luaL_newlib(L, lib);
 
+	lua_pushliteral(L, PSL_VERSION);
+	lua_setfield(L, -2, "PSL_VERSION");
+	lua_pushinteger(L, PSL_VERSION_MAJOR);
+	lua_setfield(L, -2, "PSL_VERSION_MAJOR");
+	lua_pushinteger(L, PSL_VERSION_MINOR);
+	lua_setfield(L, -2, "PSL_VERSION_MINOR");
+	lua_pushinteger(L, PSL_VERSION_NUMBER);
+	lua_setfield(L, -2, "PSL_VERSION_NUMBER");
+	lua_pushinteger(L, PSL_VERSION_PATCH);
+	lua_setfield(L, -2, "PSL_VERSION_PATCH");
+
 	/* constants for psl_is_public_suffix2 */
-	lua_createtable(L, 0, 1);
+	lua_createtable(L, 0, 3);
 	lua_pushinteger(L, PSL_TYPE_PRIVATE);
 	lua_setfield(L, -2, "PRIVATE");
 	lua_pushinteger(L, PSL_TYPE_ICANN);
