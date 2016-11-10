@@ -11,3 +11,22 @@ This list has found use in many internet technologies including:
   - allowance of issuing wildcard TLS certificates
 
 More information can be found at https://publicsuffix.org/
+
+## Status
+
+  - This is a new project
+
+
+# Installation
+
+It's recommended to install lua-psl by using [luarocks](https://luarocks.org/).
+
+    $ luarocks install --server=http://luarocks.org/dev psl
+
+## Dependencies
+
+  - [libpsl](https://github.com/rockdaboot/libpsl) >= 0.12.0
+
+### For running tests
+
+  - [busted](http://olivinelabs.com/busted/)
