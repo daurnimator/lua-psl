@@ -13,7 +13,7 @@ describe("psl", function()
 		assert.same("number", type(version))
 		assert.same(false, psl_lib.check_version_number(version - 1))
 	end);
-	(psl_lib.PSL_VERSION_NUMBER >= 0x000c00 and it or pending)("has psl_lib.TYPE field", function()
+	(psl_lib.VERSION_NUMBER >= 0x000c00 and it or pending)("has psl_lib.TYPE field", function()
 		assert.same("table", type(psl_lib.TYPE))
 		assert.same("number", type(psl_lib.TYPE.ANY))
 	end)

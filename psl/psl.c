@@ -281,15 +281,15 @@ int luaopen_psl(lua_State *L) {
 	luaL_newlib(L, lib);
 
 	lua_pushliteral(L, PSL_VERSION);
-	lua_setfield(L, -2, "PSL_VERSION");
+	lua_setfield(L, -2, "VERSION");
 	lua_pushinteger(L, PSL_VERSION_MAJOR);
-	lua_setfield(L, -2, "PSL_VERSION_MAJOR");
+	lua_setfield(L, -2, "VERSION_MAJOR");
 	lua_pushinteger(L, PSL_VERSION_MINOR);
-	lua_setfield(L, -2, "PSL_VERSION_MINOR");
+	lua_setfield(L, -2, "VERSION_MINOR");
 	lua_pushinteger(L, PSL_VERSION_NUMBER);
-	lua_setfield(L, -2, "PSL_VERSION_NUMBER");
+	lua_setfield(L, -2, "VERSION_NUMBER");
 	lua_pushinteger(L, PSL_VERSION_PATCH);
-	lua_setfield(L, -2, "PSL_VERSION_PATCH");
+	lua_setfield(L, -2, "VERSION_PATCH");
 
 #if PSL_VERSION_NUMBER >= 0x000c00
 	/* constants for psl_is_public_suffix2 */
