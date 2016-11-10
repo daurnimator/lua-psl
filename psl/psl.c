@@ -1,4 +1,7 @@
+#include <stdio.h> /* FILE* */
 #include <stdlib.h> /* free() */
+#include <time.h> /* time_t */
+
 #include <libpsl.h>
 
 #include <lua.h>
