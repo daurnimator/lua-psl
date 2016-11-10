@@ -1,4 +1,4 @@
-package = "lua-psl"
+package = "psl"
 version = "scm-0"
 source = {
 	url = "git+https://github.com/daurnimator/lua-psl.git";
