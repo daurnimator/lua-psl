@@ -148,12 +148,14 @@ static int luapsl_suffix_exception_count(lua_State *L) {
 	return 1;
 }
 
+#ifdef PSL_VERSION_NUMBER
 static int luapsl_suffix_wildcard_count(lua_State *L) {
 	const psl_ctx_t *psl = luapsl_checkpslctxnotnull(L, 1);
 	int	count = psl_suffix_wildcard_count(psl);
 	lua_pushinteger(L, count);
 	return 1;
 }
+#endif
 
 static int luapsl_builtin_file_time(lua_State *L) {
 	time_t t = psl_builtin_file_time();
@@ -175,10 +177,12 @@ static int luapsl_builtin_filename(lua_State *L) {
 	return 1;
 }
 
+#ifdef PSL_VERSION_NUMBER
 static int luapsl_builtin_outdated(lua_State *L) {
 	lua_pushboolean(L, psl_builtin_outdated());
 	return 1;
 }
+#endif
 
 static int luapsl_is_cookie_domain_acceptable(lua_State *L) {
 	const psl_ctx_t *psl = luapsl_checkpslctxnotnull(L, 1);
@@ -193,6 +197,7 @@ static int luapsl_get_version(lua_State *L) {
 	return 1;
 }
 
+#if PSL_VERSION_NUMBER >= 0x000b00
 /* Returns the library version number if the given version number is at least
 the version of the library, else return 0; If the argument is 0, the function
 returns the library version number without performing a check. */
@@ -206,6 +211,7 @@ static int luapsl_check_version_number(lua_State *L) {
 	}
 	return 1;
 }
+#endif
 
 static int luapsl_str_to_utf8lower(lua_State *L) {
 	const char *str = luaL_checkstring(L, 1);
@@ -250,9 +256,13 @@ int luaopen_psl(lua_State *L) {
 		{"builtin_file_time", luapsl_builtin_file_time},
 		{"builtin_sha1sum", luapsl_builtin_sha1sum},
 		{"builtin_filename", luapsl_builtin_filename},
+#ifdef PSL_VERSION_NUMBER
 		{"builtin_outdated", luapsl_builtin_outdated},
+#endif
 		{"get_version", luapsl_get_version},
+#if PSL_VERSION_NUMBER >= 0x000b00
 		{"check_version_number", luapsl_check_version_number},
+#endif
 		{"str_to_utf8lower", luapsl_str_to_utf8lower},
 		{NULL, NULL}
 	};
@@ -263,7 +273,9 @@ int luaopen_psl(lua_State *L) {
 		{"registrable_domain", luapsl_registrable_domain},
 		{"suffix_count", luapsl_suffix_count},
 		{"suffix_exception_count", luapsl_suffix_exception_count},
+#ifdef PSL_VERSION_NUMBER
 		{"suffix_wildcard_count", luapsl_suffix_wildcard_count},
+#endif
 		{"is_cookie_domain_acceptable", luapsl_is_cookie_domain_acceptable},
 		{NULL, NULL}
 	};
@@ -280,6 +292,7 @@ int luaopen_psl(lua_State *L) {
 
 	luaL_newlib(L, lib);
 
+#ifdef PSL_VERSION_NUMBER
 	lua_pushliteral(L, PSL_VERSION);
 	lua_setfield(L, -2, "VERSION");
 	lua_pushinteger(L, PSL_VERSION_MAJOR);
@@ -290,6 +303,7 @@ int luaopen_psl(lua_State *L) {
 	lua_setfield(L, -2, "VERSION_NUMBER");
 	lua_pushinteger(L, PSL_VERSION_PATCH);
 	lua_setfield(L, -2, "VERSION_PATCH");
+#endif
 
 #if PSL_VERSION_NUMBER >= 0x000c00
 	/* constants for psl_is_public_suffix2 */

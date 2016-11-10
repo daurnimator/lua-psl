@@ -30,7 +30,7 @@ It's recommended to install lua-psl by using [luarocks](https://luarocks.org/).
 
 ## Dependencies
 
-  - [libpsl](https://github.com/rockdaboot/libpsl) >= 0.11.0
+  - [libpsl](https://github.com/rockdaboot/libpsl) >= 0.4.0
 
 ### For running tests
 
