@@ -108,8 +108,13 @@ static int luapsl_free(lua_State *L) {
 static int luapsl_is_public_suffix(lua_State *L) {
 	const psl_ctx_t *psl = luapsl_checkpslctxnotnull(L, 1);
 	const char *domain = luaL_checkstring(L, 2);
+#if PSL_VERSION_NUMBER >= 0x000c00
 	int type = luaL_optinteger(L, 3, PSL_TYPE_ANY);
 	lua_pushboolean(L, psl_is_public_suffix2(psl, domain, type));
+#else
+	luaL_argcheck(L, lua_isnoneornil(L, 3), 3, "'type' argument only supported in libpsl >= 0.12.0");
+	lua_pushboolean(L, psl_is_public_suffix(psl, domain));
+#endif
 	return 1;
 }
 
@@ -286,6 +291,7 @@ int luaopen_psl(lua_State *L) {
 	lua_pushinteger(L, PSL_VERSION_PATCH);
 	lua_setfield(L, -2, "PSL_VERSION_PATCH");
 
+#if PSL_VERSION_NUMBER >= 0x000c00
 	/* constants for psl_is_public_suffix2 */
 	lua_createtable(L, 0, 3);
 	lua_pushinteger(L, PSL_TYPE_PRIVATE);
@@ -295,6 +301,7 @@ int luaopen_psl(lua_State *L) {
 	lua_pushinteger(L, PSL_TYPE_ANY);
 	lua_setfield(L, -2, "ANY");
 	lua_setfield(L, -2, "TYPE");
+#endif
 
 	/* cache builtin as upvalue so same pointer is returned every time */
 	luapsl_pushpslctx(L, psl_builtin());
