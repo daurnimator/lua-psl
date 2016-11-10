@@ -245,6 +245,7 @@ static int boxed_pointer__gc(lua_State *L) {
 	void **ud = lua_touserdata(L, 1);
 	free(*ud);
 	*ud = NULL;
+	return 0;
 }
 
 int luaopen_psl(lua_State *L) {
