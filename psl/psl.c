@@ -253,7 +253,6 @@ int luaopen_psl(lua_State *L) {
 		{"load_file", luapsl_load_file},
 		{"load_fp", luapsl_load_fp},
 		{"builtin", luapsl_builtin},
-		{"free", luapsl_free},
 		{"builtin_file_time", luapsl_builtin_file_time},
 		{"builtin_sha1sum", luapsl_builtin_sha1sum},
 		{"builtin_filename", luapsl_builtin_filename},
@@ -269,6 +268,7 @@ int luaopen_psl(lua_State *L) {
 	};
 
 	static const luaL_Reg psl_methods[] = {
+		{"free", luapsl_free},
 		{"is_public_suffix", luapsl_is_public_suffix},
 		{"unregistrable_domain", luapsl_unregistrable_domain},
 		{"registrable_domain", luapsl_registrable_domain},
