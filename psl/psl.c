@@ -207,9 +207,13 @@ static int luapsl_str_to_utf8lower(lua_State *L) {
 	lua_pushvalue(L, lua_upvalueindex(1));
 	lua_setmetatable(L, -2);
 	psl_error_t res = psl_str_to_utf8lower(str, encoding, locale, lower);
+	if(res == PSL_SUCCESS) {
+		lua_pushstring(L, *lower);
+	}
+	free(*lower);
+	*lower = NULL;
 	switch(res) {
 	case PSL_SUCCESS:
-		lua_pushstring(L, *lower);
 		return 1;
 	case PSL_ERR_INVALID_ARG:
 		return luaL_argerror(L, 1, "string invalid");
