@@ -12,6 +12,11 @@ This list has found use in many internet technologies including:
 
 More information can be found at https://publicsuffix.org/
 
+## Features
+
+  - Compatible with Lua 5.1, 5.2, 5.3 and [LuaJIT](http://luajit.org/)
+
+
 ## Status
 
   - This is a new project

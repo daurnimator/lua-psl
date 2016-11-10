@@ -4,6 +4,31 @@
 #include <lua.h>
 #include <lauxlib.h>
 
+/* compatibility with lua 5.1 */
+#if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM == 501
+void luaL_setmetatable(lua_State *L, const char *tname) {
+	luaL_checkstack(L, 1, "not enough stack slots");
+	luaL_getmetatable(L, tname);
+	lua_setmetatable(L, -2);
+}
+#define luaL_newlibtable(L, l) (lua_createtable(L, 0, sizeof(l)/sizeof(*(l))-1))
+#define luaL_newlib(L, l) (luaL_newlibtable(L, l), luaL_register(L, NULL, l))
+#endif
+
+/* compatibility with lua 5.1 *and* 5.2 */
+#if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM <= 502
+#define lua_getfield(L, i, k) (lua_getfield(L, i, k), lua_type(L, -1))
+#endif
+
+static FILE *luapsl_checkFILE(lua_State *L, int idx) {
+#if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM == 501
+	return luaL_checkudata(L, idx, "FILE*");
+#else
+	luaL_Stream *stream = luaL_checkudata(L, idx, LUA_FILEHANDLE);
+	return stream->f;
+#endif
+}
+
 static const psl_ctx_t **luapsl_preppslctx(lua_State *L) {
 	const psl_ctx_t **ud = lua_newuserdata(L, sizeof(psl_ctx_t*));
 	*ud = NULL;
@@ -52,9 +77,8 @@ static int luapsl_load_file(lua_State *L) {
 }
 
 static int luapsl_load_fp(lua_State *L) {
-	luaL_Stream *stream = luaL_checkudata(L, 1, LUA_FILEHANDLE);
 	/* psl_load_fp doesn't hold onto the FILE*, so no need to e.g. stow away a reference */
-	FILE *file = stream->f;
+	FILE *file = luapsl_checkFILE(L, 1);
 	const psl_ctx_t **ud = luapsl_preppslctx(L);
 	*ud = psl_load_fp(file);
 	if (*ud == NULL) {
