@@ -263,7 +263,6 @@ int luaopen_psl(lua_State *L) {
 #if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x000b00
 		{"check_version_number", luapsl_check_version_number},
 #endif
-		{"str_to_utf8lower", luapsl_str_to_utf8lower},
 		{NULL, NULL}
 	};
 
