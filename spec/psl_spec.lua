@@ -1,5 +1,8 @@
 describe("psl", function()
 	local psl_lib = require "psl"
+	it("builtin returns same object each time", function()
+		assert.equal(psl_lib.builtin(), psl_lib.builtin())
+	end)
 	it("__tostring works", function()
 		local psl = psl_lib.builtin()
 		local str = tostring(psl)
