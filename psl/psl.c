@@ -136,14 +136,14 @@ static int luapsl_registrable_domain(lua_State *L) {
 
 static int luapsl_suffix_count(lua_State *L) {
 	const psl_ctx_t *psl = luapsl_checkpslctxnotnull(L, 1);
-	int	count = psl_suffix_count(psl);
+	int count = psl_suffix_count(psl);
 	lua_pushinteger(L, count);
 	return 1;
 }
 
 static int luapsl_suffix_exception_count(lua_State *L) {
 	const psl_ctx_t *psl = luapsl_checkpslctxnotnull(L, 1);
-	int	count = psl_suffix_exception_count(psl);
+	int count = psl_suffix_exception_count(psl);
 	lua_pushinteger(L, count);
 	return 1;
 }
@@ -151,7 +151,7 @@ static int luapsl_suffix_exception_count(lua_State *L) {
 #ifdef PSL_VERSION_NUMBER
 static int luapsl_suffix_wildcard_count(lua_State *L) {
 	const psl_ctx_t *psl = luapsl_checkpslctxnotnull(L, 1);
-	int	count = psl_suffix_wildcard_count(psl);
+	int count = psl_suffix_wildcard_count(psl);
 	lua_pushinteger(L, count);
 	return 1;
 }
