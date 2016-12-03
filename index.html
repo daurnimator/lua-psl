@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>lua-psl</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="site.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="meta">
+<header>
+<h1 class="title">lua-psl</h1>
+<h1 class="subtitle">Lua bindings to libpsl</h1>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#api">API</a><ul>
+<li><a href="#psl-library">psl library</a><ul>
+<li><a href="#psl.load_file"><code>psl.load_file(path)</code> <!-- --></a></li>
+<li><a href="#psl.load_fp"><code>psl.load_fp(file)</code> <!-- --></a></li>
+<li><a href="#psl.builtin"><code>psl.builtin()</code> <!-- --></a></li>
+<li><a href="#psl.builtin_file_time"><code>psl.builtin_file_time()</code> <!-- --></a></li>
+<li><a href="#psl.builtin_sha1sum"><code>psl.builtin_sha1sum()</code> <!-- --></a></li>
+<li><a href="#psl.builtin_filename"><code>psl.builtin_filename()</code> <!-- --></a></li>
+<li><a href="#psl.builtin_outdated"><code>psl.builtin_outdated()</code> <!-- --></a></li>
+<li><a href="#psl.get_version"><code>psl.get_version()</code> <!-- --></a></li>
+<li><a href="#psl.check_version_number"><code>psl.check_version_number(version)</code> <!-- --></a></li>
+<li><a href="#psl.str_to_utf8lower"><code>psl.str_to_utf8lower(str, encoding, locale)</code> <!-- --></a></li>
+<li><a href="#psl.VERSION"><code>psl.VERSION</code> <!-- --></a></li>
+<li><a href="#psl.VERSION_MAJOR"><code>psl.VERSION_MAJOR</code> <!-- --></a></li>
+<li><a href="#psl.VERSION_MINOR"><code>psl.VERSION_MINOR</code> <!-- --></a></li>
+<li><a href="#psl.VERSION_NUMBER"><code>psl.VERSION_NUMBER</code> <!-- --></a></li>
+<li><a href="#psl.VERSION_PATCH"><code>psl.VERSION_PATCH</code> <!-- --></a></li>
+<li><a href="#psl.type"><code>psl.TYPE</code></a></li>
+</ul></li>
+<li><a href="#psl-object">psl object</a><ul>
+<li><a href="#psl:free"><code>psl:free()</code> <!-- --></a></li>
+<li><a href="#psl:is_public_suffix"><code>psl:is_public_suffix(domain, type)</code> <!-- --></a></li>
+<li><a href="#psl:unregistrable_domain"><code>psl:unregistrable_domain(domain)</code> <!-- --></a></li>
+<li><a href="#psl:registrable_domain"><code>psl:registrable_domain(domain)</code> <!-- --></a></li>
+<li><a href="#psl:suffix_count"><code>psl:suffix_count()</code> <!-- --></a></li>
+<li><a href="#psl:suffix_exception_count"><code>psl:suffix_exception_count()</code> <!-- --></a></li>
+<li><a href="#psl:suffix_wildcard_count"><code>psl:suffix_wildcard_count()</code> <!-- --></a></li>
+<li><a href="#psl:is_cookie_domain_acceptable"><code>psl:is_cookie_domain_acceptable(hostname, cookie_domain)</code> <!-- --></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#links">Links</a></li>
+</ul>
+</nav>
+</div>
+<main>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>lua-psl is a set of <a href="https://www.lua.org">lua</a> bindings to <a href="https://github.com/rockdaboot/libpsl">libpsl</a>, a C library that handles the Public Suffix List (PSL).</p>
+<p>The PSL is a list of domains where there may be sub-domains outside of the administrator's control. e.g. the administrator of '.com' does not manage 'github.com'.</p>
+<p>This list has found use in many internet technologies including:</p>
+<ul>
+<li>preventing cross-domain cookie leakage</li>
+<li>allowance of issuing wild-card TLS certificates</li>
+</ul>
+<p>More information can be found at https://publicsuffix.org/</p>
+</section>
+<section id="api" class="level1">
+<h1>API</h1>
+<section id="psl-library" class="level2">
+<h2>psl library</h2>
+<p>Load with <code>require &quot;psl&quot;</code></p>
+<section id="psl.load_file" class="level3">
+<h3><code>psl.load_file(path)</code> <!-- --></h3>
+<p>Loads the psl DAFSA from the given file path. On success, returns a <a href="#psl-object">psl object</a>. On failure, returns <code>nil</code>.</p>
+</section>
+<section id="psl.load_fp" class="level3">
+<h3><code>psl.load_fp(file)</code> <!-- --></h3>
+<p>Loads the psl DAFSA from the given <a href="https://www.lua.org/manual/5.3/manual.html#6.8">lua file object</a>. On success, returns a <a href="#psl-object">psl object</a>. On failure, returns <code>nil</code>.</p>
+</section>
+<section id="psl.builtin" class="level3">
+<h3><code>psl.builtin()</code> <!-- --></h3>
+<p>Returns the psl DAFSA built in to libpsl. If it exists, returns a <a href="#psl-object">psl object</a>. If libpsl was compiled without one, returns <code>nil</code>.</p>
+</section>
+<section id="psl.builtin_file_time" class="level3">
+<h3><code>psl.builtin_file_time()</code> <!-- --></h3>
+<p>Returns the time-stamp of the file used to build the built in psl DAFSA. If it exists, returns the time-stamp as an integer. If libpsl was compiled without one, returns <code>nil</code>.</p>
+</section>
+<section id="psl.builtin_sha1sum" class="level3">
+<h3><code>psl.builtin_sha1sum()</code> <!-- --></h3>
+<p>Returns the SHA1 checksum of the file used to build the built in psl DAFSA. If it exists, returns the checksum as a string of lower-case hex digits. If libpsl was compiled without one, returns <code>nil</code>.</p>
+</section>
+<section id="psl.builtin_filename" class="level3">
+<h3><code>psl.builtin_filename()</code> <!-- --></h3>
+<p>Returns the file name of the file used to build the built in psl DAFSA. If it exists, returns a string. If libpsl was compiled without one, returns <code>nil</code>.</p>
+</section>
+<section id="psl.builtin_outdated" class="level3">
+<h3><code>psl.builtin_outdated()</code> <!-- --></h3>
+<p>Returns a boolean indicating if the built-in DAFSA data is older than the file it has been created from.</p>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.get_version" class="level3">
+<h3><code>psl.get_version()</code> <!-- --></h3>
+<p>Returns a string containing the version of libpsl.</p>
+</section>
+<section id="psl.check_version_number" class="level3">
+<h3><code>psl.check_version_number(version)</code> <!-- --></h3>
+<p>Check if the given version number is at least the current library version number. Returns the current library version number if the given version number is at least the version of the library, otherwise returns <code>false</code>. If the argument is missing, <code>nil</code> or <code>0</code> then returns the current library version number without performing a check.</p>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.str_to_utf8lower" class="level3">
+<h3><code>psl.str_to_utf8lower(str, encoding, locale)</code> <!-- --></h3>
+<p>Converts a string to UTF-8 lower-case + NFKC representation.</p>
+<p><code>encoding</code> (optional) is the charset encoding of <code>str</code>. <code>locale</code> (optional) is the locale of <code>str</code>.</p>
+<p>On success, returns a string. On failure, returns <code>nil</code>.</p>
+</section>
+<section id="psl.VERSION" class="level3">
+<h3><code>psl.VERSION</code> <!-- --></h3>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.VERSION_MAJOR" class="level3">
+<h3><code>psl.VERSION_MAJOR</code> <!-- --></h3>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.VERSION_MINOR" class="level3">
+<h3><code>psl.VERSION_MINOR</code> <!-- --></h3>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.VERSION_NUMBER" class="level3">
+<h3><code>psl.VERSION_NUMBER</code> <!-- --></h3>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.VERSION_PATCH" class="level3">
+<h3><code>psl.VERSION_PATCH</code> <!-- --></h3>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.type" class="level3">
+<h3><code>psl.TYPE</code></h3>
+<p>Constants for <a href="#psl:is_public_suffix"><code>psl:is_public_suffix()</code></a>.</p>
+<ul>
+<li><code>PRIVATE</code></li>
+<li><code>ICANN</code></li>
+<li><code>ANY</code></li>
+</ul>
+<p>Note: This table will not exist if lua-psl is compiled against libpsl 0.11 or earlier.</p>
+</section>
+</section>
+<section id="psl-object" class="level2">
+<h2>psl object</h2>
+<section id="psl:free" class="level3">
+<h3><code>psl:free()</code> <!-- --></h3>
+<p>Manually free the resources used by the psl object.</p>
+<p>Will be called automatically if the psl object is collected.</p>
+</section>
+<section id="psl:is_public_suffix" class="level3">
+<h3><code>psl:is_public_suffix(domain, type)</code> <!-- --></h3>
+<p>Checks if <code>domain</code> is on the public suffix list.</p>
+<p><code>domain</code> should be a UTF-8 string.</p>
+<p><code>type</code> (optional) should be one of the <a href="#psl.TYPE"><code>psl.TYPE</code></a> constants; it defaults to <code>psl.TYPE.ANY</code>. This argument is only supported if compiled against libpsl 0.12.0 or above.</p>
+<p>Returns a boolean.</p>
+</section>
+<section id="psl:unregistrable_domain" class="level3">
+<h3><code>psl:unregistrable_domain(domain)</code> <!-- --></h3>
+<p><code>domain</code> should be a UTF-8 string.</p>
+<p>Returns the longest public suffix part of <code>domain</code> as a string. If <code>domain</code> does not contain a public suffix, returns <code>nil</code>.</p>
+</section>
+<section id="psl:registrable_domain" class="level3">
+<h3><code>psl:registrable_domain(domain)</code> <!-- --></h3>
+<p><code>domain</code> should be a UTF-8 string.</p>
+<p>Returns the shortest private suffix part of <code>domain</code> as a string. If <code>domain</code> does not contain a private suffix, returns <code>nil</code>.</p>
+</section>
+<section id="psl:suffix_count" class="level3">
+<h3><code>psl:suffix_count()</code> <!-- --></h3>
+<p>Returns the number of public suffixes as an integer.</p>
+</section>
+<section id="psl:suffix_exception_count" class="level3">
+<h3><code>psl:suffix_exception_count()</code> <!-- --></h3>
+<p>Returns the number of public suffix exceptions as an integer.</p>
+</section>
+<section id="psl:suffix_wildcard_count" class="level3">
+<h3><code>psl:suffix_wildcard_count()</code> <!-- --></h3>
+<p>Returns the number of public suffix wild-cards as an integer.</p>
+<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl:is_cookie_domain_acceptable" class="level3">
+<h3><code>psl:is_cookie_domain_acceptable(hostname, cookie_domain)</code> <!-- --></h3>
+<p>Checks whether <code>cookie_domain</code> is an acceptable cookie domain value for the request <code>hostname</code>.</p>
+<p><code>hostname</code> and <code>cookie_domain</code> should be UTF-8 strings.</p>
+<p>Returns a boolean.</p>
+<section id="psl:is_cookie_domain_acceptable-example" class="level4">
+<h4>Example <!-- --></h4>
+<div class="sourceCode"><pre class="sourceCode lua"><code class="sourceCode lua"><span class="kw">local</span> psl <span class="ot">=</span> <span class="fu">assert</span><span class="ot">(</span><span class="fu">require</span> <span class="st">&quot;psl&quot;</span><span class="ot">.</span>builtin<span class="ot">())</span>
+<span class="fu">assert</span><span class="ot">(</span>psl:is_cookie_domain_acceptable<span class="ot">(</span><span class="st">&quot;www.example.com&quot;</span><span class="ot">,</span> <span class="st">&quot;example.com&quot;</span><span class="ot">))</span>
+<span class="fu">assert</span><span class="ot">(</span><span class="kw">not</span> psl:is_cookie_domain_acceptable<span class="ot">(</span><span class="st">&quot;example.com&quot;</span><span class="ot">,</span> <span class="st">&quot;com&quot;</span><span class="ot">))</span></code></pre></div>
+</section>
+</section>
+</section>
+</section>
+<section id="links" class="level1">
+<h1>Links</h1>
+<ul>
+<li><a href="https://github.com/daurnimator/lua-psl">Github</a></li>
+<li><a href="https://github.com/daurnimator/lua-psl/issues">Issue tracker</a></li>
+<li><a href="https://github.com/rockdaboot/libpsl">libpsl</a></li>
+<li><a href="https://publicsuffix.org/">publicsuffix.org</a></li>
+</ul>
+</section>
+</main>
+</body>
+</html>
