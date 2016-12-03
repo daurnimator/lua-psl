@@ -252,7 +252,6 @@ int luaopen_psl(lua_State *L) {
 	static const luaL_Reg lib[] = {
 		{"load_file", luapsl_load_file},
 		{"load_fp", luapsl_load_fp},
-		{"builtin", luapsl_builtin},
 		{"builtin_file_time", luapsl_builtin_file_time},
 		{"builtin_sha1sum", luapsl_builtin_sha1sum},
 		{"builtin_filename", luapsl_builtin_filename},
