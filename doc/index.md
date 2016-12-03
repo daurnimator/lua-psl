@@ -99,6 +99,13 @@ The libpsl version as a string.
 Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
 
+### `psl.VERSION_NUMBER` <!-- --> {#psl.VERSION_NUMBER}
+
+The libpsl version as an number.
+
+Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
+
+
 ### `psl.VERSION_MAJOR` <!-- --> {#psl.VERSION_MAJOR}
 
 The libpsl major version as an integer.
@@ -109,13 +116,6 @@ Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or
 ### `psl.VERSION_MINOR` <!-- --> {#psl.VERSION_MINOR}
 
 The libpsl minor version as an integer.
-
-Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
-
-
-### `psl.VERSION_NUMBER` <!-- --> {#psl.VERSION_NUMBER}
-
-The libpsl version as an number.
 
 Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
