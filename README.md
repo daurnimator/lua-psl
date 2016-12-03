@@ -12,6 +12,11 @@ This list has found use in many internet technologies including:
 
 More information can be found at https://publicsuffix.org/
 
+## Documentation
+
+Can be found at [https://daurnimator.github.io/lua-psl/](https://daurnimator.github.io/lua-psl/)
+
+
 ## Features
 
   - Compatible with Lua 5.1, 5.2, 5.3 and [LuaJIT](http://luajit.org/)
@@ -55,4 +60,19 @@ It's recommended to install lua-psl by using [luarocks](https://luarocks.org/).
   - Run tests ([install tools first](#for-running-tests))
     ```
     $ busted
+    ```
+
+
+## Generating documentation
+
+Documentation is written in markdown and intended to be consumed by [pandoc](http://pandoc.org/)
+
+  - To generate self-contained HTML documentation:
+    ```
+    $ pandoc -t html5 --template=doc/template.html --section-divs --self-contained --toc -c doc/site.css doc/index.md doc/metadata.yaml
+    ```
+
+  - To generate a pdf manual:
+    ```
+    $ pandoc -s -t latex -V documentclass=article -V classoption=oneside -V links-as-notes -V geometry=a4paper,includeheadfoot,margin=2.54cm doc/index.md doc/metadata.yaml -o lua-psl.pdf
     ```
