@@ -2,7 +2,7 @@
 
 Bindings to [libpsl](https://github.com/rockdaboot/libpsl), a C library that handles the Public Suffix List (PSL).
 
-The PSL is a list of domains where there may be subdomains outside of the admin's control.  
+The PSL is a list of domains where there may be subdomains outside of the administrator's control.
 e.g. the administrator of '.com' does not manage 'github.com'.
 
 This list has found use in many internet technologies including:
@@ -35,3 +35,24 @@ It's recommended to install lua-psl by using [luarocks](https://luarocks.org/).
 ### For running tests
 
   - [busted](http://olivinelabs.com/busted/)
+
+
+# Development
+
+## Getting started
+
+  - Clone the repo:
+    ```
+    $ git clone https://github.com/daurnimator/lua-psl.git
+    $ cd lua-psl
+    ```
+
+  - Install your local copy:
+    ```
+    $ luarocks make psl-scm-0.rockspec
+    ```
+
+  - Run tests ([install tools first](#for-running-tests))
+    ```
+    $ busted
+    ```
