@@ -124,13 +124,14 @@ Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or
 
 ### `psl.TYPE`
 
-Constants for [`psl:is_public_suffix()`](#psl:is_public_suffix).
+A table containing constants for [`psl:is_public_suffix()`](#psl:is_public_suffix).
 
   - `PRIVATE`
   - `ICANN`
   - `ANY`
 
 Note: This table will not exist if lua-psl is compiled against libpsl 0.11 or earlier.
+
 
 ## psl object
 
