@@ -101,7 +101,7 @@ Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or
 
 ### `psl.VERSION_NUMBER` <!-- --> {#psl.VERSION_NUMBER}
 
-The libpsl version as an number.
+The libpsl version as an integer.
 
 Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
