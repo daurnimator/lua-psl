@@ -10,7 +10,7 @@ This list has found use in many internet technologies including:
   - preventing cross-domain cookie leakage
   - allowance of issuing wildcard TLS certificates
 
-More information can be found at https://publicsuffix.org/
+More information can be found at [publicsuffix.org](https://publicsuffix.org/)
 
 ## Documentation
 
