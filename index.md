@@ -94,43 +94,49 @@ On failure, returns `nil`.
 
 ### `psl.VERSION` <!-- --> {#psl.VERSION}
 
+The libpsl version as a string.
 
-Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
-
-
-### `psl.VERSION_MAJOR` <!-- --> {#psl.VERSION_MAJOR}
-
-
-Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
-
-
-### `psl.VERSION_MINOR` <!-- --> {#psl.VERSION_MINOR}
-
-
-Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
+Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
 
 ### `psl.VERSION_NUMBER` <!-- --> {#psl.VERSION_NUMBER}
 
+The libpsl version as an number.
 
-Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
+Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
+
+
+### `psl.VERSION_MAJOR` <!-- --> {#psl.VERSION_MAJOR}
+
+The libpsl major version as an integer.
+
+Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
+
+
+### `psl.VERSION_MINOR` <!-- --> {#psl.VERSION_MINOR}
+
+The libpsl minor version as an integer.
+
+Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
 
 ### `psl.VERSION_PATCH` <!-- --> {#psl.VERSION_PATCH}
 
+The libpsl patch version as an integer.
 
-Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
+Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
 
 ### `psl.TYPE`
 
-Constants for [`psl:is_public_suffix()`](#psl:is_public_suffix).
+A table containing constants for [`psl:is_public_suffix()`](#psl:is_public_suffix).
 
   - `PRIVATE`
   - `ICANN`
   - `ANY`
 
 Note: This table will not exist if lua-psl is compiled against libpsl 0.11 or earlier.
+
 
 ## psl object
 

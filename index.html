@@ -70,9 +70,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#psl.check_version_number"><code>psl.check_version_number(version)</code> <!-- --></a></li>
 <li><a href="#psl.str_to_utf8lower"><code>psl.str_to_utf8lower(str, encoding, locale)</code> <!-- --></a></li>
 <li><a href="#psl.VERSION"><code>psl.VERSION</code> <!-- --></a></li>
+<li><a href="#psl.VERSION_NUMBER"><code>psl.VERSION_NUMBER</code> <!-- --></a></li>
 <li><a href="#psl.VERSION_MAJOR"><code>psl.VERSION_MAJOR</code> <!-- --></a></li>
 <li><a href="#psl.VERSION_MINOR"><code>psl.VERSION_MINOR</code> <!-- --></a></li>
-<li><a href="#psl.VERSION_NUMBER"><code>psl.VERSION_NUMBER</code> <!-- --></a></li>
 <li><a href="#psl.VERSION_PATCH"><code>psl.VERSION_PATCH</code> <!-- --></a></li>
 <li><a href="#psl.type"><code>psl.TYPE</code></a></li>
 </ul></li>
@@ -154,27 +154,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </section>
 <section id="psl.VERSION" class="level3">
 <h3><code>psl.VERSION</code> <!-- --></h3>
-<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
-</section>
-<section id="psl.VERSION_MAJOR" class="level3">
-<h3><code>psl.VERSION_MAJOR</code> <!-- --></h3>
-<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
-</section>
-<section id="psl.VERSION_MINOR" class="level3">
-<h3><code>psl.VERSION_MINOR</code> <!-- --></h3>
-<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+<p>The libpsl version as a string.</p>
+<p>Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
 </section>
 <section id="psl.VERSION_NUMBER" class="level3">
 <h3><code>psl.VERSION_NUMBER</code> <!-- --></h3>
-<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+<p>The libpsl version as an number.</p>
+<p>Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.VERSION_MAJOR" class="level3">
+<h3><code>psl.VERSION_MAJOR</code> <!-- --></h3>
+<p>The libpsl major version as an integer.</p>
+<p>Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+</section>
+<section id="psl.VERSION_MINOR" class="level3">
+<h3><code>psl.VERSION_MINOR</code> <!-- --></h3>
+<p>The libpsl minor version as an integer.</p>
+<p>Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
 </section>
 <section id="psl.VERSION_PATCH" class="level3">
 <h3><code>psl.VERSION_PATCH</code> <!-- --></h3>
-<p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
+<p>The libpsl patch version as an integer.</p>
+<p>Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
 </section>
 <section id="psl.type" class="level3">
 <h3><code>psl.TYPE</code></h3>
-<p>Constants for <a href="#psl:is_public_suffix"><code>psl:is_public_suffix()</code></a>.</p>
+<p>A table containing constants for <a href="#psl:is_public_suffix"><code>psl:is_public_suffix()</code></a>.</p>
 <ul>
 <li><code>PRIVATE</code></li>
 <li><code>ICANN</code></li>
