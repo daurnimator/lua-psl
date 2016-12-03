@@ -21,49 +21,49 @@ Load with `require "psl"`
 
 ### `psl.load_file(path)` <!-- --> {#psl.load_file}
 
-Loads the psl DAFSA from the given file path.
+Loads a psl from the given file path.
 On success, returns a [psl object](#psl-object).
 On failure, returns `nil`.
 
 
 ### `psl.load_fp(file)` <!-- --> {#psl.load_fp}
 
-Loads the psl DAFSA from the given [lua file object](https://www.lua.org/manual/5.3/manual.html#6.8).
+Loads a psl from the given [lua file object](https://www.lua.org/manual/5.3/manual.html#6.8).
 On success, returns a [psl object](#psl-object).
 On failure, returns `nil`.
 
 
 ### `psl.builtin()` <!-- --> {#psl.builtin}
 
-Returns the psl DAFSA built in to libpsl.
+Returns the psl built in to libpsl.
 If it exists, returns a [psl object](#psl-object).
 If libpsl was compiled without one, returns `nil`.
 
 
 ### `psl.builtin_file_time()` <!-- --> {#psl.builtin_file_time}
 
-Returns the time-stamp of the file used to build the built in psl DAFSA.
+Returns the time-stamp of the file used to build the built in psl.
 If it exists, returns the time-stamp as an integer.
 If libpsl was compiled without one, returns `nil`.
 
 
 ### `psl.builtin_sha1sum()` <!-- --> {#psl.builtin_sha1sum}
 
-Returns the SHA1 checksum of the file used to build the built in psl DAFSA.
+Returns the SHA1 checksum of the file used to build the built in psl.
 If it exists, returns the checksum as a string of lower-case hex digits.
 If libpsl was compiled without one, returns `nil`.
 
 
 ### `psl.builtin_filename()` <!-- --> {#psl.builtin_filename}
 
-Returns the file name of the file used to build the built in psl DAFSA.
+Returns the file name of the file used to build the built in psl.
 If it exists, returns a string.
 If libpsl was compiled without one, returns `nil`.
 
 
 ### `psl.builtin_outdated()` <!-- --> {#psl.builtin_outdated}
 
-Returns a boolean indicating if the built-in DAFSA data is older than the file it has been created from.
+Returns a boolean indicating if the built-in data is older than the file it has been created from.
 
 Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
