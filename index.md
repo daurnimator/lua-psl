@@ -63,7 +63,7 @@ If libpsl was compiled without one, returns `nil`.
 
 ### `psl.builtin_outdated()` <!-- --> {#psl.builtin_outdated}
 
-Returns a boolean indicating if the built-in data is older than the file it has been created from.
+Returns a boolean indicating if the built-in data is older than the file currently at [`psl.builtin_filename()`](#psl.builtin_filename).
 
 Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
