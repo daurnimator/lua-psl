@@ -110,31 +110,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Load with <code>require &quot;psl&quot;</code></p>
 <section id="psl.load_file" class="level3">
 <h3><code>psl.load_file(path)</code> <!-- --></h3>
-<p>Loads the psl DAFSA from the given file path. On success, returns a <a href="#psl-object">psl object</a>. On failure, returns <code>nil</code>.</p>
+<p>Loads a psl from the given file path. On success, returns a <a href="#psl-object">psl object</a>. On failure, returns <code>nil</code>.</p>
 </section>
 <section id="psl.load_fp" class="level3">
 <h3><code>psl.load_fp(file)</code> <!-- --></h3>
-<p>Loads the psl DAFSA from the given <a href="https://www.lua.org/manual/5.3/manual.html#6.8">lua file object</a>. On success, returns a <a href="#psl-object">psl object</a>. On failure, returns <code>nil</code>.</p>
+<p>Loads a psl from the given <a href="https://www.lua.org/manual/5.3/manual.html#6.8">lua file object</a>. On success, returns a <a href="#psl-object">psl object</a>. On failure, returns <code>nil</code>.</p>
 </section>
 <section id="psl.builtin" class="level3">
 <h3><code>psl.builtin()</code> <!-- --></h3>
-<p>Returns the psl DAFSA built in to libpsl. If it exists, returns a <a href="#psl-object">psl object</a>. If libpsl was compiled without one, returns <code>nil</code>.</p>
+<p>Returns the psl built in to libpsl. If it exists, returns a <a href="#psl-object">psl object</a>. If libpsl was compiled without one, returns <code>nil</code>.</p>
 </section>
 <section id="psl.builtin_file_time" class="level3">
 <h3><code>psl.builtin_file_time()</code> <!-- --></h3>
-<p>Returns the time-stamp of the file used to build the built in psl DAFSA. If it exists, returns the time-stamp as an integer. If libpsl was compiled without one, returns <code>nil</code>.</p>
+<p>Returns the time-stamp of the file used to build the built in psl. If it exists, returns the time-stamp as an integer. If libpsl was compiled without one, returns <code>nil</code>.</p>
 </section>
 <section id="psl.builtin_sha1sum" class="level3">
 <h3><code>psl.builtin_sha1sum()</code> <!-- --></h3>
-<p>Returns the SHA1 checksum of the file used to build the built in psl DAFSA. If it exists, returns the checksum as a string of lower-case hex digits. If libpsl was compiled without one, returns <code>nil</code>.</p>
+<p>Returns the SHA1 checksum of the file used to build the built in psl. If it exists, returns the checksum as a string of lower-case hex digits. If libpsl was compiled without one, returns <code>nil</code>.</p>
 </section>
 <section id="psl.builtin_filename" class="level3">
 <h3><code>psl.builtin_filename()</code> <!-- --></h3>
-<p>Returns the file name of the file used to build the built in psl DAFSA. If it exists, returns a string. If libpsl was compiled without one, returns <code>nil</code>.</p>
+<p>Returns the file name of the file used to build the built in psl. If it exists, returns a string. If libpsl was compiled without one, returns <code>nil</code>.</p>
 </section>
 <section id="psl.builtin_outdated" class="level3">
 <h3><code>psl.builtin_outdated()</code> <!-- --></h3>
-<p>Returns a boolean indicating if the built-in DAFSA data is older than the file it has been created from.</p>
+<p>Returns a boolean indicating if the built-in data is older than the file currently at <a href="#psl.builtin_filename"><code>psl.builtin_filename()</code></a>.</p>
 <p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
 </section>
 <section id="psl.get_version" class="level3">
@@ -159,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </section>
 <section id="psl.VERSION_NUMBER" class="level3">
 <h3><code>psl.VERSION_NUMBER</code> <!-- --></h3>
-<p>The libpsl version as an number.</p>
+<p>The libpsl version as an integer.</p>
 <p>Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
 </section>
 <section id="psl.VERSION_MAJOR" class="level3">
