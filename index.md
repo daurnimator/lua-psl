@@ -127,7 +127,7 @@ The libpsl patch version as an integer.
 Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
 
-### `psl.TYPE`
+### `psl.TYPE` <!-- --> {#psl.TYPE}
 
 A table containing constants for [`psl:is_public_suffix()`](#psl:is_public_suffix).
 
@@ -153,7 +153,7 @@ Checks if `domain` is on the public suffix list.
 
 `domain` should be a UTF-8 string.
 
-`type` (optional) should be one of the [`psl.TYPE`](#psl.TYPE) constants; it defaults to `psl.TYPE.ANY`.
+`type` (optional) should be one of the [`psl.TYPE`](#psl.TYPE) constants; the default behaviour is `psl.TYPE.ANY`.
 This argument is only supported if compiled against libpsl 0.12.0 or above.
 
 Returns a boolean.
