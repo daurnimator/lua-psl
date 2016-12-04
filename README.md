@@ -2,7 +2,7 @@
 
 Bindings to [libpsl](https://github.com/rockdaboot/libpsl), a C library that handles the Public Suffix List (PSL).
 
-The PSL is a list of domains where there may be subdomains outside of the administrator's control.
+The PSL is a list of domains where there may be sub-domains outside of the administrator's control.
 e.g. the administrator of '.com' does not manage 'github.com'.
 
 This list has found use in many internet technologies including:
