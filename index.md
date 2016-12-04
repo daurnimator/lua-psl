@@ -76,7 +76,8 @@ Returns a string containing the version of libpsl.
 ### `psl.check_version_number(version)` <!-- --> {#psl.check_version_number}
 
 Check if the given version number is at least the current library version number.
-Returns the current library version number if the given version number is at least the version of the library, otherwise returns `false`. If the argument is missing, `nil` or `0` then returns the current library version number without performing a check.
+
+Returns the current library version number if the given version number is at least the version of the library, otherwise returns `false`. If the `version` argument is missing, `nil` or `0` then returns the current library version number without performing a check.
 
 Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
@@ -127,13 +128,13 @@ The libpsl patch version as an integer.
 Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
 
-### `psl.TYPE`
+### `psl.TYPE` <!-- --> {#psl.TYPE}
 
 A table containing constants for [`psl:is_public_suffix()`](#psl:is_public_suffix).
 
-  - `PRIVATE`
-  - `ICANN`
   - `ANY`
+  - `ICANN`
+  - `PRIVATE`
 
 Note: This table will not exist if lua-psl is compiled against libpsl 0.11 or earlier.
 
@@ -153,7 +154,7 @@ Checks if `domain` is on the public suffix list.
 
 `domain` should be a UTF-8 string.
 
-`type` (optional) should be one of the [`psl.TYPE`](#psl.TYPE) constants; it defaults to `psl.TYPE.ANY`.
+`type` (optional) should be one of the [`psl.TYPE`](#psl.TYPE) constants; the default behaviour is `psl.TYPE.ANY`.
 This argument is only supported if compiled against libpsl 0.12.0 or above.
 
 Returns a boolean.

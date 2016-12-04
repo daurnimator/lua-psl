@@ -74,7 +74,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#psl.VERSION_MAJOR"><code>psl.VERSION_MAJOR</code> <!-- --></a></li>
 <li><a href="#psl.VERSION_MINOR"><code>psl.VERSION_MINOR</code> <!-- --></a></li>
 <li><a href="#psl.VERSION_PATCH"><code>psl.VERSION_PATCH</code> <!-- --></a></li>
-<li><a href="#psl.type"><code>psl.TYPE</code></a></li>
+<li><a href="#psl.TYPE"><code>psl.TYPE</code> <!-- --></a></li>
 </ul></li>
 <li><a href="#psl-object">psl object</a><ul>
 <li><a href="#psl:free"><code>psl:free()</code> <!-- --></a></li>
@@ -143,7 +143,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </section>
 <section id="psl.check_version_number" class="level3">
 <h3><code>psl.check_version_number(version)</code> <!-- --></h3>
-<p>Check if the given version number is at least the current library version number. Returns the current library version number if the given version number is at least the version of the library, otherwise returns <code>false</code>. If the argument is missing, <code>nil</code> or <code>0</code> then returns the current library version number without performing a check.</p>
+<p>Check if the given version number is at least the current library version number.</p>
+<p>Returns the current library version number if the given version number is at least the version of the library, otherwise returns <code>false</code>. If the <code>version</code> argument is missing, <code>nil</code> or <code>0</code> then returns the current library version number without performing a check.</p>
 <p>Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
 </section>
 <section id="psl.str_to_utf8lower" class="level3">
@@ -177,13 +178,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>The libpsl patch version as an integer.</p>
 <p>Note: This constant will not exist if lua-psl is compiled against libpsl 0.10 or earlier.</p>
 </section>
-<section id="psl.type" class="level3">
-<h3><code>psl.TYPE</code></h3>
+<section id="psl.TYPE" class="level3">
+<h3><code>psl.TYPE</code> <!-- --></h3>
 <p>A table containing constants for <a href="#psl:is_public_suffix"><code>psl:is_public_suffix()</code></a>.</p>
 <ul>
-<li><code>PRIVATE</code></li>
-<li><code>ICANN</code></li>
 <li><code>ANY</code></li>
+<li><code>ICANN</code></li>
+<li><code>PRIVATE</code></li>
 </ul>
 <p>Note: This table will not exist if lua-psl is compiled against libpsl 0.11 or earlier.</p>
 </section>
@@ -199,7 +200,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><code>psl:is_public_suffix(domain, type)</code> <!-- --></h3>
 <p>Checks if <code>domain</code> is on the public suffix list.</p>
 <p><code>domain</code> should be a UTF-8 string.</p>
-<p><code>type</code> (optional) should be one of the <a href="#psl.TYPE"><code>psl.TYPE</code></a> constants; it defaults to <code>psl.TYPE.ANY</code>. This argument is only supported if compiled against libpsl 0.12.0 or above.</p>
+<p><code>type</code> (optional) should be one of the <a href="#psl.TYPE"><code>psl.TYPE</code></a> constants; the default behaviour is <code>psl.TYPE.ANY</code>. This argument is only supported if compiled against libpsl 0.12.0 or above.</p>
 <p>Returns a boolean.</p>
 </section>
 <section id="psl:unregistrable_domain" class="level3">
