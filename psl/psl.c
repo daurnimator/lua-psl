@@ -307,12 +307,12 @@ int luaopen_psl(lua_State *L) {
 #if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x000c00
 	/* constants for psl_is_public_suffix2 */
 	lua_createtable(L, 0, 3);
-	lua_pushinteger(L, PSL_TYPE_PRIVATE);
-	lua_setfield(L, -2, "PRIVATE");
-	lua_pushinteger(L, PSL_TYPE_ICANN);
-	lua_setfield(L, -2, "ICANN");
 	lua_pushinteger(L, PSL_TYPE_ANY);
 	lua_setfield(L, -2, "ANY");
+	lua_pushinteger(L, PSL_TYPE_ICANN);
+	lua_setfield(L, -2, "ICANN");
+	lua_pushinteger(L, PSL_TYPE_PRIVATE);
+	lua_setfield(L, -2, "PRIVATE");
 	lua_setfield(L, -2, "TYPE");
 #endif
 
