@@ -1,4 +1,4 @@
-UNRELEASED
+0.1 - 2016-12-04
 
   - Bindings to all exposed libpsl <= 0.15 symbols
   - Documentation via pandoc

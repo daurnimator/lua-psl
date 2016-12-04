@@ -31,7 +31,7 @@ Can be found at [https://daurnimator.github.io/lua-psl/](https://daurnimator.git
 
 It's recommended to install lua-psl by using [luarocks](https://luarocks.org/).
 
-    $ luarocks install --server=http://luarocks.org/dev psl
+    $ luarocks install psl
 
 ## Dependencies
 
