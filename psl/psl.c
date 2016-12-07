@@ -248,6 +248,24 @@ static int luapsl_str_to_utf8lower(lua_State *L) {
 	}
 }
 
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x001000
+static int luapsl_latest(lua_State *L) {
+	psl_ctx_t **cached_builtin;
+	const char *fname = luaL_optstring(L, 1, NULL);
+	const psl_ctx_t **ud = luapsl_preppslctx(L);
+	*ud = psl_latest(fname);
+	if (*ud == NULL) {
+		lua_pushnil(L);
+	}
+	/* if it is psl_builtin(), returned cached upvalue */
+	cached_builtin = lua_touserdata(L, lua_upvalueindex(1));
+	if (cached_builtin != NULL && *ud == *cached_builtin) {
+		lua_pushvalue(L, lua_upvalueindex(1));
+	}
+	return 1;
+}
+#endif
+
 static int boxed_pointer__gc(lua_State *L) {
 	void **ud = lua_touserdata(L, 1);
 	free(*ud);
@@ -328,6 +346,11 @@ int luaopen_psl(lua_State *L) {
 
 	/* cache builtin as upvalue so same pointer is returned every time */
 	luapsl_pushpslctx(L, psl_builtin());
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x001000
+	lua_pushvalue(L, -1);
+	lua_pushcclosure(L, luapsl_latest, 1);
+	lua_setfield(L, -2, "latest");
+#endif
 	lua_pushcclosure(L, luapsl_builtin, 1);
 	lua_setfield(L, -2, "builtin");
 
