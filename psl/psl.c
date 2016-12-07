@@ -192,6 +192,13 @@ static int luapsl_is_cookie_domain_acceptable(lua_State *L) {
 	return 1;
 }
 
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x001000
+static int luapsl_dist_filename(lua_State *L) {
+	lua_pushstring(L, psl_dist_filename());
+	return 1;
+}
+#endif
+
 static int luapsl_get_version(lua_State *L) {
 	lua_pushstring(L, psl_get_version());
 	return 1;
@@ -257,6 +264,9 @@ int luaopen_psl(lua_State *L) {
 		{"builtin_filename", luapsl_builtin_filename},
 #ifdef PSL_VERSION_NUMBER
 		{"builtin_outdated", luapsl_builtin_outdated},
+#endif
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x001000
+		{"dist_filename", luapsl_dist_filename},
 #endif
 		{"get_version", luapsl_get_version},
 #if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x000b00
