@@ -9,6 +9,7 @@
 
 /* compatibility with lua 5.1 */
 #if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM == 501
+#define luaL_newmetatable(L, tn) (luaL_newmetatable(L, tn) ? (lua_pushstring(L, tn), lua_setfield(L, -2, "__name"), 1) : 0)
 static void luaL_setmetatable(lua_State *L, const char *tname) {
 	luaL_checkstack(L, 1, "not enough stack slots");
 	luaL_getmetatable(L, tname);
