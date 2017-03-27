@@ -68,6 +68,14 @@ Returns a boolean indicating if the built-in data is older than the file current
 Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
 
+### `psl.dist_filename()` <!-- --> {#psl.dist_filename}
+
+Returns a string containing the path to your computer's default psl database location.
+If libpsl was not configured with one or was configured with an empty path, returns `nil`.
+
+Note: This function will not exist if lua-psl is compiled against libpsl 0.15 or earlier.
+
+
 ### `psl.get_version()` <!-- --> {#psl.get_version}
 
 Returns a string containing the version of libpsl.

@@ -7,7 +7,15 @@ describe("psl", function()
 		local psl = psl_lib.builtin()
 		local str = tostring(psl)
 		assert.same("psl_ctx_t*: 0x", str:match("^.-0x"))
-	end)
+	end);
+	(psl_lib.VERSION_NUMBER and psl_lib.VERSION_NUMBER >= 0x001000 and it or pending)("has working psl_lib.dist_filename()", function()
+		local dist_filename = psl_lib.dist_filename()
+		if dist_filename then
+			assert.same("string", type(dist_filename))
+		else
+			assert.same(nil, dist_filename)
+		end
+	end);
 	it("has working psl_lib.get_version()", function()
 		assert.same("string", type(psl_lib.get_version()))
 	end);
