@@ -22,6 +22,7 @@ static void luaL_setmetatable(lua_State *L, const char *tname) {
 /* compatibility with lua 5.1 *and* 5.2 */
 #if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM <= 502
 #define lua_getfield(L, i, k) (lua_getfield(L, i, k), lua_type(L, -1))
+#define luaL_getmetafield(L, o, e) (luaL_getmetafield(L, o, e) ? lua_type(L, -1) : LUA_TNIL)
 #endif
 
 static FILE *luapsl_checkFILE(lua_State *L, int idx) {
@@ -60,13 +61,11 @@ static const psl_ctx_t *luapsl_checkpslctxnotnull(lua_State *L, int idx) {
 	return psl;
 }
 
+/* A __tostring like 5.3.4 */
 static int luapsl__tostring(lua_State *L) {
-	void *ud = lua_touserdata(L, 1);
-	const char* typename = "userdata";
-	if (lua_getmetatable(L, 1) && lua_getfield(L, -1, "__name")) {
-		typename = lua_tostring(L, -1);
-	}
-	lua_pushfstring(L, "%s: %p", typename, ud);
+	int tt = luaL_getmetafield(L, 1, "__name");
+	const char *kind = (tt == LUA_TSTRING) ? lua_tostring(L, -1) : luaL_typename(L, 1);
+	lua_pushfstring(L, "%s: %p", kind, lua_topointer(L, 1));
 	return 1;
 }
 
