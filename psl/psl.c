@@ -26,7 +26,7 @@ static void luaL_setmetatable(lua_State *L, const char *tname) {
 
 static FILE *luapsl_checkFILE(lua_State *L, int idx) {
 #if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM == 501
-	return luaL_checkudata(L, idx, "FILE*");
+	return *(FILE**)luaL_checkudata(L, idx, "FILE*");
 #else
 	luaL_Stream *stream = luaL_checkudata(L, idx, LUA_FILEHANDLE);
 	return stream->f;

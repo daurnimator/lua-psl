@@ -1,5 +1,6 @@
 UNRELEASED
 
+  - Fix crash when trying to load a psl file under lua 5.1
   - Set `__name` in metatable in lua 5.1 (fixes broken test)
   - Bind new functions in libpsl 0.16 (`.dist_filename` and `.latest`)
 
