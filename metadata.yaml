@@ -2,4 +2,5 @@
 ---
 title: lua-psl
 subtitle: Lua bindings to libpsl
+author: Daurnimator <quae@daurnimator.com>
 ...
