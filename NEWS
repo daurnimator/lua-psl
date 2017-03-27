@@ -1,3 +1,9 @@
+UNRELEASED
+
+  - Set `__name` in metatable in lua 5.1 (fixes broken test)
+  - Bind new functions in libpsl 0.16 (`.dist_filename` and `.latest`)
+
+
 0.1 - 2016-12-04
 
   - Bindings to all exposed libpsl <= 0.15 symbols
