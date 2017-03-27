@@ -203,6 +203,19 @@ static int luapsl_dist_filename(lua_State *L) {
 	return 1;
 }
 
+static int luapsl_latest(lua_State *L) {
+	const char *filename = luaL_optstring(L, 1, NULL);
+	const psl_ctx_t **ud = luapsl_preppslctx(L);
+	*ud = psl_latest(filename);
+	if (*ud == NULL) {
+		lua_pushnil(L);
+	} else if (*ud == psl_builtin()) {
+		*ud = NULL;
+		lua_pushvalue(L, lua_upvalueindex(1));
+	}
+	return 1;
+}
+
 static int luapsl_get_version(lua_State *L) {
 	lua_pushstring(L, psl_get_version());
 	return 1;
@@ -332,6 +345,11 @@ int luaopen_psl(lua_State *L) {
 
 	/* cache builtin as upvalue so same pointer is returned every time */
 	luapsl_pushpslctx(L, psl_builtin());
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x001000
+	lua_pushvalue(L, -1);
+	lua_pushcclosure(L, luapsl_latest, 1);
+	lua_setfield(L, -3, "latest");
+#endif
 	lua_pushcclosure(L, luapsl_builtin, 1);
 	lua_setfield(L, -2, "builtin");
 

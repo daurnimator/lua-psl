@@ -61,5 +61,8 @@ describe("psl", function()
 		assert.same(false, psl:is_cookie_domain_acceptable("sub.foo.bar", "foo.bar"))
 		assert.same(true, psl:is_cookie_domain_acceptable("sub.foo.bar", "sub.foo.bar"))
 		assert.same(true, psl:is_cookie_domain_acceptable("qux.sub.foo.bar", "sub.foo.bar"))
-	end)
+	end);
+	(psl_lib.VERSION_NUMBER and psl_lib.VERSION_NUMBER >= 0x001000 and it or pending)("has working psl_lib.latest()", function()
+		psl_lib.latest()
+	end);
 end)

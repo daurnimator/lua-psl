@@ -76,6 +76,20 @@ If libpsl was not configured with one or was configured with an empty path, retu
 Note: This function will not exist if lua-psl is compiled against libpsl 0.15 or earlier.
 
 
+### `psl.latest(filename)` <!-- --> {#psl.latest}
+
+This function loads the the latest available PSL data from the following locations:
+
+ 1. `filename` (application specific filename, may be `nil`)
+ 2. default psl database location (as returned from [`psl.dist_filename()`](#psl.dist_filename))
+ 3. built-in PSL data (as returned from [`psl.builtin()`](#psl.builtin))
+ 4. location of built-in data (as returned from [`psl.builtin_filename()`](#psl.builtin_filename))
+
+If none of the locations contain a valid psl object then returns `nil`.
+
+Note: This function will not exist if lua-psl is compiled against libpsl 0.15 or earlier.
+
+
 ### `psl.get_version()` <!-- --> {#psl.get_version}
 
 Returns a string containing the version of libpsl.
