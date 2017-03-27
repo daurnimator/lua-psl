@@ -1,2 +1,5 @@
 *.so
 *.o
+*.rock
+doc/*.pdf
+doc/*.3
