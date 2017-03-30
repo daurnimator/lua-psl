@@ -9,6 +9,7 @@
 
 #define LUAPSL_NAME "lua-psl"
 #define LUAPSL_DESCRIPTION "Bindings to libpsl"
+#define LUAPSL_VERSION "0.2"
 
 /* compatibility with lua 5.1 */
 #if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM == 501
@@ -323,7 +324,7 @@ int luaopen_psl(lua_State *L) {
 	lua_setfield(L, -2, "_NAME");
 	lua_pushliteral(L, LUAPSL_DESCRIPTION);
 	lua_setfield(L, -2, "_DESCRIPTION");
-	lua_pushnil(L);
+	lua_pushliteral(L, LUAPSL_VERSION);
 	lua_setfield(L, -2, "_VERSION");
 
 #ifdef PSL_VERSION_NUMBER

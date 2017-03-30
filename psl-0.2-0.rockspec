@@ -1,7 +1,8 @@
 package = "psl"
-version = "scm-0"
+version = "0.2-0"
 source = {
-	url = "git+https://github.com/daurnimator/lua-psl.git";
+	url = "https://github.com/daurnimator/lua-psl/archive/v0.2.zip";
+	dir = "lua-psl-0.2";
 }
 description = {
 	summary = "Bindings to libpsl, a C library that handles the Public Suffix List (PSL)";

@@ -1,4 +1,4 @@
-UNRELEASED
+0.2 - 2017-03-30
 
   - Fix crash when trying to load a psl file under lua 5.1
   - Set `__name` in metatable in lua 5.1 (fixes broken test)
