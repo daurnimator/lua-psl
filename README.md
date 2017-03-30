@@ -24,7 +24,8 @@ Can be found at [https://daurnimator.github.io/lua-psl/](https://daurnimator.git
 
 ## Status
 
-  - This is a new project
+  - This project was started in late 2016
+  - Binds all functions available from libpsl up to the 0.17 release
 
 
 # Installation
