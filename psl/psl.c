@@ -7,6 +7,9 @@
 #include <lua.h>
 #include <lauxlib.h>
 
+#define LUAPSL_NAME "lua-psl"
+#define LUAPSL_DESCRIPTION "Bindings to libpsl"
+
 /* compatibility with lua 5.1 */
 #if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM == 501
 #define luaL_newmetatable(L, tn) (luaL_newmetatable(L, tn) ? (lua_pushstring(L, tn), lua_setfield(L, -2, "__name"), 1) : 0)
@@ -316,6 +319,12 @@ int luaopen_psl(lua_State *L) {
 	lua_pop(L, 1);
 
 	luaL_newlib(L, lib);
+	lua_pushliteral(L, LUAPSL_NAME);
+	lua_setfield(L, -2, "_NAME");
+	lua_pushliteral(L, LUAPSL_DESCRIPTION);
+	lua_setfield(L, -2, "_DESCRIPTION");
+	lua_pushnil(L);
+	lua_setfield(L, -2, "_VERSION");
 
 #ifdef PSL_VERSION_NUMBER
 	lua_pushliteral(L, PSL_VERSION);
