@@ -1,3 +1,8 @@
+UNRELEASED
+
+  - Updates for libpsl 0.19 (`count` functions can return nil, use of `psl_free_string`)
+
+
 0.2 - 2017-03-30
 
   - Fix crash when trying to load a psl file under lua 5.1
