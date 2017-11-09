@@ -251,7 +251,11 @@ static int luapsl_str_to_utf8lower(lua_State *L) {
 	if(res == PSL_SUCCESS) {
 		lua_pushstring(L, *lower);
 	}
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x001300
+	psl_free_string(*lower);
+#else
 	free(*lower);
+#endif
 	*lower = NULL;
 	switch(res) {
 	case PSL_SUCCESS:
@@ -270,7 +274,11 @@ static int luapsl_str_to_utf8lower(lua_State *L) {
 
 static int boxed_pointer__gc(lua_State *L) {
 	void **ud = lua_touserdata(L, 1);
+#if defined(PSL_VERSION_NUMBER) && PSL_VERSION_NUMBER >= 0x001300
+	psl_free_string(*ud);
+#else
 	free(*ud);
+#endif
 	*ud = NULL;
 	return 0;
 }
