@@ -202,15 +202,21 @@ If `domain` does not contain a private suffix, returns `nil`.
 
 Returns the number of public suffixes as an integer.
 
+When the count is unknown, returns `nil`.
+
 
 ### `psl:suffix_exception_count()` <!-- --> {#psl:suffix_exception_count}
 
 Returns the number of public suffix exceptions as an integer.
 
+When the count is unknown, returns `nil`.
+
 
 ### `psl:suffix_wildcard_count()` <!-- --> {#psl:suffix_wildcard_count}
 
 Returns the number of public suffix wild-cards as an integer.
+
+When the count is unknown, returns `nil`.
 
 Note: This function will not exist if lua-psl is compiled against libpsl 0.10 or earlier.
 
