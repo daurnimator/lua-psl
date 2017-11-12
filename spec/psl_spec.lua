@@ -1,5 +1,11 @@
 describe("psl", function()
 	local psl_lib = require "psl"
+	local function newer_than(x)
+		if psl_lib.VERSION_NUMBER and psl_lib.VERSION_NUMBER >= x then
+			return it
+		end
+		return pending
+	end
 	it("builtin returns same object each time", function()
 		assert.equal(psl_lib.builtin(), psl_lib.builtin())
 	end)
@@ -8,7 +14,7 @@ describe("psl", function()
 		local str = tostring(psl)
 		assert.same("psl_ctx_t*: 0x", str:match("^.-0x"))
 	end);
-	(psl_lib.VERSION_NUMBER and psl_lib.VERSION_NUMBER >= 0x001000 and it or pending)("has working psl_lib.dist_filename()", function()
+	newer_than(0x001000)("has working psl_lib.dist_filename()", function()
 		local dist_filename = psl_lib.dist_filename()
 		if dist_filename then
 			assert.same("string", type(dist_filename))
@@ -19,12 +25,12 @@ describe("psl", function()
 	it("has working psl_lib.get_version()", function()
 		assert.same("string", type(psl_lib.get_version()))
 	end);
-	(psl_lib.VERSION_NUMBER and psl_lib.VERSION_NUMBER >= 0x000b00 and it or pending)("has working psl_lib.check_version_number()", function()
+	newer_than(0x000b00)("has working psl_lib.check_version_number()", function()
 		local version = psl_lib.check_version_number()
 		assert.same("number", type(version))
 		assert.same(false, psl_lib.check_version_number(version - 1))
 	end);
-	(psl_lib.VERSION_NUMBER and psl_lib.VERSION_NUMBER >= 0x000c00 and it or pending)("has psl_lib.TYPE field", function()
+	newer_than(0x000c00)("has psl_lib.TYPE field", function()
 		assert.same("table", type(psl_lib.TYPE))
 		assert.same("number", type(psl_lib.TYPE.ANY))
 	end)
@@ -62,7 +68,7 @@ describe("psl", function()
 		assert.same(true, psl:is_cookie_domain_acceptable("sub.foo.bar", "sub.foo.bar"))
 		assert.same(true, psl:is_cookie_domain_acceptable("qux.sub.foo.bar", "sub.foo.bar"))
 	end);
-	(psl_lib.VERSION_NUMBER and psl_lib.VERSION_NUMBER >= 0x001000 and it or pending)("has working psl_lib.latest()", function()
+	newer_than(0x001000)("has working psl_lib.latest()", function()
 		psl_lib.latest()
 	end);
 end)
