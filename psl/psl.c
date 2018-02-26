@@ -369,6 +369,10 @@ int luaopen_psl(lua_State *L) {
 	lua_setfield(L, -2, "ICANN");
 	lua_pushinteger(L, PSL_TYPE_PRIVATE);
 	lua_setfield(L, -2, "PRIVATE");
+#ifdef PSL_TYPE_NO_STAR_RULE
+	lua_pushinteger(L, PSL_TYPE_NO_STAR_RULE);
+	lua_setfield(L, -2, "NO_STAR_RULE");
+#endif
 	lua_setfield(L, -2, "TYPE");
 #endif
 

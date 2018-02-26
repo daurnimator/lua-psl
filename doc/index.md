@@ -157,6 +157,7 @@ A table containing constants for [`psl:is_public_suffix()`](#psl:is_public_suffi
   - `ANY`
   - `ICANN`
   - `PRIVATE`
+  - `NO_STAR_RULE` (if compiled against libpsl 0.20 or newer)
 
 Note: This table will not exist if lua-psl is compiled against libpsl 0.11 or earlier.
 
