@@ -1,4 +1,4 @@
-UNRELEASED
+0.3 - 2018-07-15
 
   - Updates for libpsl 0.20 (PSL_TYPE_NO_STAR_RULE)
   - Updates for libpsl 0.19 (`count` functions can return nil, use of `psl_free_string`)
