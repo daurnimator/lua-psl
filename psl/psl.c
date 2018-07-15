@@ -344,8 +344,10 @@ int luaopen_psl(lua_State *L) {
 	lua_setfield(L, -2, "_NAME");
 	lua_pushliteral(L, LUAPSL_DESCRIPTION);
 	lua_setfield(L, -2, "_DESCRIPTION");
-	lua_pushnil(L);
+#ifdef LUAPSL_VERSION
+	lua_pushliteral(L, LUAPSL_VERSION);
 	lua_setfield(L, -2, "_VERSION");
+#endif
 
 #ifdef PSL_VERSION_NUMBER
 	lua_pushliteral(L, PSL_VERSION);
