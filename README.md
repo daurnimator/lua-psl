@@ -19,7 +19,7 @@ Can be found at [https://daurnimator.github.io/lua-psl/](https://daurnimator.git
 
 ## Features
 
-  - Compatible with Lua 5.1, 5.2, 5.3 and [LuaJIT](http://luajit.org/)
+  - Compatible with Lua 5.1, 5.2, 5.3, 5.4 and [LuaJIT](http://luajit.org/)
 
 
 ## Status
