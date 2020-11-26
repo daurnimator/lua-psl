@@ -1,3 +1,8 @@
+UNRELEASED
+
+  - Add `__close` metamethod on psl object for Lua 5.4+
+
+
 0.3 - 2018-07-15
 
   - Updates for libpsl 0.20 (PSL_TYPE_NO_STAR_RULE)

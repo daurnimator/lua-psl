@@ -331,6 +331,10 @@ int luaopen_psl(lua_State *L) {
 
 	/* create psl metatable */
 	luaL_newmetatable(L, "psl_ctx_t*");
+#if defined(LUA_VERSION_NUM) && LUA_VERSION_NUM >= 504
+	lua_pushcfunction(L, luapsl_free);
+	lua_setfield(L, -2, "__close");
+#endif
 	lua_pushcfunction(L, luapsl_free);
 	lua_setfield(L, -2, "__gc");
 	lua_pushcfunction(L, luapsl__tostring);
